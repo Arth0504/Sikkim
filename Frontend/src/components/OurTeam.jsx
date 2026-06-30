@@ -1,5 +1,5 @@
 import arthImg from "../assets/TeemM/Arth.jpg";
-import sagarImg from "../assets/TeemM/Sagar.jpg";
+import sagarImg from "../assets/TeemM/sagar.jpg";
 import sejalImg from "../assets/TeemM/Sejalmem.png";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";

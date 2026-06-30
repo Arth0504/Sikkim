@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Check, X, User, Package, Calendar, Eye, Download } from "lucide-react";
 import API from "../services/api";
 import { showSuccess, showError } from "../utils/toast";
+import imgUrl from "../utils/imgUrl";
 
 const AdminBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -140,7 +141,7 @@ const AdminBookings = () => {
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 overflow-hidden">
-                        {b.passportPhoto ? <img src={`http://localhost:8519${b.passportPhoto}`} className="w-full h-full object-cover" /> : <User size={20} />}
+                        {b.passportPhoto ? <img src={imgUrl(b.passportPhoto)} className="w-full h-full object-cover" /> : <User size={20} />}
                       </div>
                       <div>
                         <p className="font-bold text-slate-900 leading-none">{b.firstName} {b.lastName}</p>
