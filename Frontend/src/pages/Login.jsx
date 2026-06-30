@@ -89,16 +89,18 @@ const Login = () => {
           <p className="text-slate-500 font-medium">Continue your spiritual journey with Monastery360</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
           <div className="space-y-2">
             <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Email Address</label>
             <input
               type="email"
               name="email"
+              value={form.email}
               placeholder="name@example.com"
               className="w-full bg-white border border-slate-200 rounded-xl px-5 py-3.5 outline-none focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 transition-all text-slate-900 placeholder:text-slate-400 font-medium"
               required
               onChange={handleChange}
+              autoComplete="off"
             />
           </div>
 
@@ -107,10 +109,12 @@ const Login = () => {
             <input
               type="password"
               name="password"
+              value={form.password}
               placeholder="••••••••"
               className="w-full bg-white border border-slate-200 rounded-xl px-5 py-3.5 outline-none focus:border-[#0d9488] focus:ring-4 focus:ring-[#0d9488]/10 transition-all text-slate-900 placeholder:text-slate-400 font-medium"
               required
               onChange={handleChange}
+              autoComplete="new-password"
             />
           </div>
 

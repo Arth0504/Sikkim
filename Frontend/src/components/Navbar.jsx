@@ -45,9 +45,19 @@ const Navbar = () => {
     { name: "Monasteries", path: "/monasteries" },
   ];
 
+  const isHomePage = location.pathname === "/";
+  const isSolid = scrolled || !isHomePage;
+
+  const isActive = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
+
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+      isSolid ? "bg-white/95 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between w-full">
         {/* LOGO */}
@@ -56,7 +66,7 @@ const Navbar = () => {
             <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-teal-600/20 group-hover:scale-110 transition-transform">
               <Compass size={24} />
             </div>
-            <span className={`text-2xl font-black tracking-tight ${scrolled ? "text-slate-900" : "text-white"}`}>
+            <span className={`text-2xl font-black tracking-tight ${isSolid ? "text-[#111827]" : "text-white"}`}>
               Monastery<span className="text-teal-600">360</span>
             </span>
           </Link>
@@ -69,14 +79,14 @@ const Navbar = () => {
               key={link.path}
               to={link.path}
               className={`relative text-sm font-bold uppercase tracking-widest transition-colors py-2 group ${
-                location.pathname === link.path 
+                isActive(link.path) 
                   ? "text-teal-600 font-extrabold" 
-                  : (scrolled ? "text-slate-600 hover:text-teal-600" : "text-white/80 hover:text-white")
+                  : (isSolid ? "text-[#111827] hover:text-teal-600" : "text-white/80 hover:text-white")
               }`}
             >
               {link.name}
               <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-teal-600 transition-transform duration-300 origin-left ${
-                location.pathname === link.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                isActive(link.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
               }`} />
             </Link>
           ))}
@@ -92,7 +102,7 @@ const Navbar = () => {
           {!token ? (
             <>
               <Link to="/login" className={`px-6 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl transition-all ${
-                scrolled ? "text-slate-900 hover:bg-slate-100" : "text-white hover:bg-white/10"
+                isSolid ? "text-[#111827] hover:bg-slate-100" : "text-white hover:bg-white/10"
               }`}>
                 Login
               </Link>
@@ -105,7 +115,7 @@ const Navbar = () => {
               {role === "user" && (
                 <>
                   <Link to="/wishlist" className={`px-5 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl transition-all flex items-center gap-2 ${
-                    scrolled ? "text-slate-900 hover:bg-slate-100" : "text-white hover:bg-white/10"
+                    isSolid ? "text-[#111827] hover:bg-slate-100" : "text-white hover:bg-white/10"
                   }`}>
                     <Heart size={16} className="text-rose-500 fill-current" />
                     <span>Wishlist</span>
@@ -116,7 +126,7 @@ const Navbar = () => {
                     )}
                   </Link>
                   <Link to="/my-bookings" className={`px-5 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl transition-all flex items-center gap-2 ${
-                    scrolled ? "text-slate-900 hover:bg-slate-100" : "text-white hover:bg-white/10"
+                    isSolid ? "text-[#111827] hover:bg-slate-100" : "text-white hover:bg-white/10"
                   }`}>
                     <User size={18} /> My Bookings
                   </Link>
@@ -125,7 +135,7 @@ const Navbar = () => {
               <button 
                 onClick={logout} 
                 className={`p-2.5 rounded-xl transition-all ${
-                  scrolled ? "text-slate-400 hover:text-red-500 hover:bg-red-50" : "text-white/60 hover:text-white hover:bg-white/10"
+                  isSolid ? "text-slate-400 hover:text-red-500 hover:bg-red-50" : "text-white/60 hover:text-white hover:bg-white/10"
                 }`}
               >
                 <LogOut size={20} />
@@ -137,7 +147,7 @@ const Navbar = () => {
         {/* MOBILE MENU TOGGLE */}
         <button 
           onClick={() => setMenuOpen(!menuOpen)} 
-          className={`lg:hidden p-2 rounded-xl ${scrolled ? "text-slate-900" : "text-white"}`}
+          className={`lg:hidden p-2 rounded-xl ${isSolid ? "text-[#111827]" : "text-white"}`}
         >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>

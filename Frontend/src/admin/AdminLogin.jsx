@@ -40,16 +40,18 @@ const AdminLogin = () => {
           <p className="text-slate-500 font-medium">Restricted access for platform administrators</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
           <div className="space-y-2">
             <label className="text-xs font-black uppercase tracking-widest text-slate-400 ml-1">Admin Email</label>
             <input 
               type="email" 
               name="email" 
+              value={form.email}
               required 
               onChange={handleChange} 
               className="w-full bg-white border border-slate-200 rounded-xl px-5 py-3.5 outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-900/10 transition-all text-slate-900 placeholder:text-slate-400 font-medium"
               placeholder="admin@monastery360.com"
+              autoComplete="off"
             />
           </div>
 
@@ -58,10 +60,12 @@ const AdminLogin = () => {
             <input 
               type="password" 
               name="password" 
+              value={form.password}
               required 
               onChange={handleChange} 
               className="w-full bg-white border border-slate-200 rounded-xl px-5 py-3.5 outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-900/10 transition-all text-slate-900 placeholder:text-slate-400 font-medium"
               placeholder="••••••••"
+              autoComplete="new-password"
             />
           </div>
 
